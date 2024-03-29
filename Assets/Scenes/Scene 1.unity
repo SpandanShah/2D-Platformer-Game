@@ -302,6 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1157483981}
   speed: 6
+  jumpForce: 20
 --- !u!95 &1157483981 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3990273435674002325, guid: 22c695955fc03154ca82947c3bd25812,
@@ -451,8 +452,8 @@ Transform:
   m_GameObject: {fileID: 1872317536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -1.3479, z: 0.078116655}
-  m_LocalScale: {x: 22.486664, y: 0.9241673, z: 1}
+  m_LocalPosition: {x: 0.0811, y: -1.3479, z: 0.078116655}
+  m_LocalScale: {x: 13.024156, y: 0.9241673, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -489,7 +490,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13154823}
+  m_Offset: {x: 0, y: -0.1200216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -500,7 +501,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.73690355}
+  m_Size: {x: 1, y: 0.75995684}
   m_EdgeRadius: 0
 --- !u!1001 &2276887407295354020
 PrefabInstance:
@@ -578,7 +579,7 @@ PrefabInstance:
     - target: {fileID: 6363058159273763918, guid: 22c695955fc03154ca82947c3bd25812,
         type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

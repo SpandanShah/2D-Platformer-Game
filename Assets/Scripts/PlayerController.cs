@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     private BoxCollider2D collider;
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rb;
     public float speed;
+    [SerializeField] float jumpForce = 10;
     private void Awake()
     {
         Debug.Log("Player Controller awake");
@@ -17,18 +18,18 @@ public class PlayerController : MonoBehaviour
     //     Debug.Log("Collision: "+ collision.gameObject.name);
     // }
 
-    /*void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
-    }*/
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        bool VerticalInput = Input.GetKeyDown(KeyCode.Space);
-        float vertical = Input.GetAxisRaw("Jump");
+        bool VerticalInput = Input.GetKeyDown(KeyCode.Space);// Input.GetAxisRaw("Jump");
+
 
         MoveCharactor(horizontal);
         PlayerMovementAnimation(horizontal, VerticalInput);
@@ -83,17 +84,18 @@ public class PlayerController : MonoBehaviour
         //Jump
         if (VerticalInput)
         {
-            animator.SetTrigger("JumpTr");
+            rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
+            //animator.SetTrigger("JumpTr");
+            Debug.Log("Val of Vericle input: "+ VerticalInput);
         }
+        Debug.Log("Val v input:" + VerticalInput);
         /*
-        if ( vertical > 0)
+        else if(VerticalInput < 0)
         {
-            animator.SetBool("Jump", true);
+            Debug.Log("Val of Vericle input: " + VerticalInput);
+            rb.AddForce(-Vector2.up * jumpForce,ForceMode2D.Impulse);
+            Debug.Log("Collision: " + collider.gameObject.name);
         }
-        else
-        {
-            animator.SetBool("Jump", false);
-        }*/
-        
+        */
     }
 }
