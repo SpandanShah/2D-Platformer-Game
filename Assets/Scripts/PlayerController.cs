@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     [SerializeField] private float jumpForce = 10;
     private bool isGrounded = false;
+    private float screenBottom = -20f; // Define the bottom boundary of the screen
     private void Awake()
     {
         Debug.Log("Player Controller awake");
@@ -36,7 +38,11 @@ public class PlayerController : MonoBehaviour
 
         MoveCharactor(horizontal);
         PlayerMovementAnimation(horizontal, VerticalInput);
-        
+
+        if (transform.position.y < screenBottom)
+        {
+            Die();
+        }
 
         /*bool isJumping = false;
 
@@ -99,6 +105,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision: " + collider.gameObject.name);
         }
         */
+    }
+    private void Die()
+    {
+        speed = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MovePlayerVertically(float vertical)
     {
