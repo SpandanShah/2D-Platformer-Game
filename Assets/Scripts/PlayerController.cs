@@ -5,11 +5,12 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
-    private BoxCollider2D collider;
-    private Rigidbody2D rb;
+    [SerializeField] public Animator animator;
+    [SerializeField] private BoxCollider2D collider;
+    [SerializeField] private Rigidbody2D rb;
     public float speed;
-    [SerializeField] float jumpForce = 10;
+    [SerializeField] private float jumpForce = 10;
+    private bool isGrounded = false;
     private void Awake()
     {
         Debug.Log("Player Controller awake");
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         bool VerticalInput = Input.GetKeyDown(KeyCode.Space);// Input.GetAxisRaw("Jump");
+        float vertical = Input.GetAxisRaw("Vertical");
+        MovePlayerVertically(vertical);
 
 
         MoveCharactor(horizontal);
@@ -85,10 +88,9 @@ public class PlayerController : MonoBehaviour
         if (VerticalInput)
         {
             rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
-            //animator.SetTrigger("JumpTr");
             Debug.Log("Val of Vericle input: "+ VerticalInput);
         }
-        Debug.Log("Val v input:" + VerticalInput);
+        //Debug.Log("Val v input:" + VerticalInput);
         /*
         else if(VerticalInput < 0)
         {
@@ -97,5 +99,27 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision: " + collider.gameObject.name);
         }
         */
+    }
+    public void MovePlayerVertically(float vertical)
+    {
+        if (vertical > 0 && isGrounded)
+        {
+            animator.SetTrigger("Jump");
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
+    }
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.transform.tag == "platform")
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.transform.tag == "platform")
+        {
+            isGrounded = false;
+        }
     }
 }
