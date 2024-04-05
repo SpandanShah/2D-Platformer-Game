@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController;
     [SerializeField] public Animator animator;
     [SerializeField] private BoxCollider2D collider;
     [SerializeField] private Rigidbody2D rb;
@@ -105,6 +106,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision: " + collider.gameObject.name);
         }
         */
+    }
+
+    public void PickUpKey()
+    {
+        Debug.Log("Player picked up the key");
+        scoreController.IncreaseScore(10);
     }
     private void Die()
     {
