@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
@@ -7,25 +9,23 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
-    [SerializeField] public Animator animator;
-    [SerializeField] private BoxCollider2D collider;
+    [SerializeField] private Animator animator;
+    [SerializeField] private BoxCollider2D coll;
     [SerializeField] private Rigidbody2D rb;
     public float speed;
     [SerializeField] private float jumpForce = 10;
     private bool isGrounded = false;
     private float screenBottom = -20f; // Define the bottom boundary of the screen
+    //[SerializeField] private string Death = "Death";
     private void Awake()
     {
         Debug.Log("Player Controller awake");
     }
-    // private void OnCollisionEnter2D(Collision2D collision){
-    //     Debug.Log("Collision: "+ collision.gameObject.name);
-    // }
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
+        coll = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -139,5 +139,17 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void KillPlayer()
+    {
+        Debug.Log("Player killed by enemy!");
+        if (gameObject.CompareTag("Player"))
+        {
+            animator.Play("Death",0,1.5f);
+        }
+        
+        //anim = gameObject.GetComponent<Animation>();
+        Die();
     }
 }
