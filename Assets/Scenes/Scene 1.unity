@@ -225,7 +225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -195.28, y: 144}
+  m_AnchoredPosition: {x: -206.18, y: 102}
   m_SizeDelta: {x: 27.2467, y: 23.5029}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &193395080
@@ -301,7 +301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -123, y: 105}
+  m_AnchoredPosition: {x: 162, y: 103}
   m_SizeDelta: {x: 171.7998, y: 36.0896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378375707
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -448,7 +448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -136.9, y: 144}
+  m_AnchoredPosition: {x: -147.79999, y: 102}
   m_SizeDelta: {x: 27.2467, y: 23.5029}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &424569439
@@ -990,7 +990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -166.1, y: 144}
+  m_AnchoredPosition: {x: -177, y: 102}
   m_SizeDelta: {x: 27.2467, y: 23.5029}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069752307
@@ -1095,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreController: {fileID: 1157483987}
+  gameOverController: {fileID: 0}
   animator: {fileID: 1157483981}
   coll: {fileID: 0}
   rb: {fileID: 0}
@@ -1137,10 +1138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4003b0eff8c67448a5e68b31e8d46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyController: {fileID: 0}
-  life1: {fileID: 193395078}
-  life2: {fileID: 1069752305}
-  life3: {fileID: 424569437}
 --- !u!1 &1332382551
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
+    public GameOverController gameOverController;
     [SerializeField] private Animator animator;
     [SerializeField] private BoxCollider2D coll;
     [SerializeField] private Rigidbody2D rb;
@@ -116,7 +117,8 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         speed = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("GameOver");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MovePlayerVertically(float vertical)
     {
