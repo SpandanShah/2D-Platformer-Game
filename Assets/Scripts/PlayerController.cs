@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         speed = 0;
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene(3);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MovePlayerVertically(float vertical)

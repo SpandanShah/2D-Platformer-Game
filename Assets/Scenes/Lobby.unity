@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e901a1960deee6408113c4918612eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameLevel: Scene 1
+  LevelSelection: LevelSelection
 --- !u!4 &124605768
 Transform:
   m_ObjectHideFlags: 0
@@ -641,7 +641,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383945155}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124605767}
+        m_TargetAssemblyTypeName: LobbController, Assembly-CSharp
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1383945155
 MonoBehaviour:
   m_ObjectHideFlags: 0

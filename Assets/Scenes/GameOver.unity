@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf0e152c2e285347893e27dfb8a0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameLevel: Scene 1
+  GameLevel: Level 1
   Lobby: Lobby
 --- !u!1 &2038297696
 GameObject:

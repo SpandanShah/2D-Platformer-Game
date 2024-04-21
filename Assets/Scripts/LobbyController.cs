@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LobbController : MonoBehaviour
 {
-    [SerializeField] private string newGameLevel = "Scene 1";
+    [SerializeField] private string LevelSelection = "LevelSelection";
     public void PlayButton()
     {
-        SceneManager.LoadScene(newGameLevel);
+        SceneManager.LoadScene(LevelSelection);
+    }
+    public void QuitButton()
+    {
+        Debug.Log("Inside Quit");
+        Application.Quit();
     }
 }
