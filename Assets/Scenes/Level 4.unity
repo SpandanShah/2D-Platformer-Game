@@ -435,8 +435,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 163, y: 177.6}
-  m_SizeDelta: {x: 171.7998, y: 36.0896}
+  m_AnchoredPosition: {x: 150.13, y: 143.76}
+  m_SizeDelta: {x: 158.55, y: 36.0896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378375707
 MonoBehaviour:
@@ -1261,18 +1261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoretext: {fileID: 378375707}
---- !u!114 &1157483990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157483973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a4003b0eff8c67448a5e68b31e8d46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1332382551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59c3c4ef33c8c14099addce7627a516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextLevel: Level 5
 --- !u!850595691 &1529609337
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2599,10 +2588,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1157483987}
-    - targetCorrespondingSourceObject: {fileID: 2276887407938356322, guid: 22c695955fc03154ca82947c3bd25812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1157483990}
   m_SourcePrefab: {fileID: 100100000, guid: 22c695955fc03154ca82947c3bd25812, type: 3}
 --- !u!1001 &3340781861126864838
 PrefabInstance:

@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelOverController : MonoBehaviour
 {
+    public string NextLevel;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Level complete");
-            SceneManager.LoadScene("Level 2");
+            LevelManager.Instance.MarkCurrentLevelComplete();
+            SceneManager.LoadScene(NextLevel);
         }
     }
 }

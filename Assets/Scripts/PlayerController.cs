@@ -96,17 +96,7 @@ public class PlayerController : MonoBehaviour
         if (VerticalInput)
         {
             rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
-            Debug.Log("Val of Vericle input: "+ VerticalInput);
         }
-        //Debug.Log("Val v input:" + VerticalInput);
-        /*
-        else if(VerticalInput < 0)
-        {
-            Debug.Log("Val of Vericle input: " + VerticalInput);
-            rb.AddForce(-Vector2.up * jumpForce,ForceMode2D.Impulse);
-            Debug.Log("Collision: " + collider.gameObject.name);
-        }
-        */
     }
 
     public void PickUpKey()
@@ -117,7 +107,8 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         speed = 0;
-        SceneManager.LoadScene(3);
+        Scene Currentscene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(Currentscene.name);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MovePlayerVertically(float vertical)
