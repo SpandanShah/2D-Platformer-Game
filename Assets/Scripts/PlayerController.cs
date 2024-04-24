@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         speed = 0;
         Scene Currentscene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(Currentscene.name);
+        SceneManager.LoadScene("GameOver");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MovePlayerVertically(float vertical)
