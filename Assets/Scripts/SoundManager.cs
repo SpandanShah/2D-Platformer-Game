@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
     
     public AudioSource soundEffect;
     public AudioSource soundMusic;
+    public AudioSource movementSound;
 
     public SoundType[] Sounds;
     public bool IsMute = false;
@@ -97,6 +98,7 @@ public enum Sounds
     ButtonClick,
     Music,
     PlayerMove,
+    PlayerJump,
     PlayerDeath,
     EnemyDeath
 }

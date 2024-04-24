@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private float screenBottom = -20f; // Define the bottom boundary of the screen
     //[SerializeField] private string Death = "Death";
+
     private void Awake()
     {
         Debug.Log("Player Controller awake");
@@ -84,10 +86,12 @@ public class PlayerController : MonoBehaviour
 
         if (horizontal < 0)
         {
+            SoundManager.Instance.Play(Sounds.PlayerMove);
             scale.x = -1f * Mathf.Abs(scale.x);
         }
         else if (horizontal > 0)
         {
+            SoundManager.Instance.Play(Sounds.PlayerMove);
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
@@ -95,10 +99,10 @@ public class PlayerController : MonoBehaviour
         //Jump
         if (VerticalInput)
         {
+            SoundManager.Instance.Play(Sounds.PlayerJump);
             rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
         }
     }
-
     public void PickUpKey()
     {
         Debug.Log("Player picked up the key");
