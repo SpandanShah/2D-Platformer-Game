@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         bool VerticalInput = Input.GetKeyDown(KeyCode.Space);// Input.GetAxisRaw("Jump");
-        float vertical = Input.GetAxisRaw("Vertical");
-        MovePlayerVertically(vertical);
+        //float vertical = Input.GetAxisRaw("Vertical");
+        //MovePlayerVertically(vertical);
 
 
         MoveCharactor(horizontal);
@@ -47,31 +47,6 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
-
-        /*bool isJumping = false;
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !isJumping)
-        {
-            isJumping = true;
-            animator.SetBool("Jump", true);
-        }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") && isJumping && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-        {
-            isJumping = false;
-            animator.SetBool("Jump", false);
-        }
-
-        bool isCrouching = false;
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !isCrouching)
-        {
-            isCrouching = true;
-            animator.SetBool("Crouch", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftControl) && isCrouching)
-        {
-            isCrouching = false;
-            animator.SetBool("Crouch", false); // Transition to idle or walk state
-        }*/
     }
     private void MoveCharactor(float horizontal)
     {
@@ -105,12 +80,13 @@ public class PlayerController : MonoBehaviour
     }
     public void PickUpKey()
     {
-        Debug.Log("Player picked up the key");
+        Debug.Log("Player picked up the key!");
         scoreController.IncreaseScore(10);
     }
     private void Die()
     {
         speed = 0;
+        SoundManager.Instance.Play(Sounds.PlayerDeath);
         Scene Currentscene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("GameOver");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -141,6 +117,7 @@ public class PlayerController : MonoBehaviour
     public void KillPlayer()
     {
         Debug.Log("Player killed by enemy!");
+        
         if (gameObject.CompareTag("Player"))
         {
             animator.Play("Death",0,1.5f);
