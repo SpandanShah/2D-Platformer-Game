@@ -2,21 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+// using System.Diagnostics;
+using TMPro;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerController : MonoBehaviour
 {
-    public ScoreController scoreController;
-    public GameOverController gameOverController;
+    [SerializeField] public ScoreController scoreController;
+    [SerializeField] public GameOverController gameOverController;
     [SerializeField] private Animator animator;
     [SerializeField] private BoxCollider2D coll;
     [SerializeField] private Rigidbody2D rb;
     public float speed;
+    private bool isGrounded = true;
     [SerializeField] private float jumpForce = 10;
-    private bool isGrounded = false;
+    
     private float screenBottom = -20f; // Define the bottom boundary of the screen
     //[SerializeField] private string Death = "Death";
 
@@ -28,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("Animator component not found on the player GameObject!");
+        }
         coll = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -35,10 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        bool VerticalInput = Input.GetKeyDown(KeyCode.Space);// Input.GetAxisRaw("Jump");
-        //float vertical = Input.GetAxisRaw("Vertical");
-        //MovePlayerVertically(vertical);
-
+        bool VerticalInput = Input.GetKeyDown(KeyCode.Space);
 
         MoveCharactor(horizontal);
         PlayerMovementAnimation(horizontal, VerticalInput);
@@ -72,10 +77,11 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scale;
 
         //Jump
-        if (VerticalInput)
+        if (VerticalInput && isGrounded)
         {
             SoundManager.Instance.Play(Sounds.PlayerJump);
-            rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isGrounded = false;
         }
     }
     public void PickUpKey()
@@ -88,9 +94,9 @@ public class PlayerController : MonoBehaviour
         speed = 0;
         SoundManager.Instance.Play(Sounds.PlayerDeath);
         Scene Currentscene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("GameOver");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("GameOver"); 
     }
+
     public void MovePlayerVertically(float vertical)
     {
         if (vertical > 0 && isGrounded)
@@ -99,13 +105,16 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
+
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.transform.tag == "platform")
         {
             isGrounded = true;
+            Debug.Log("Player is grounded.");
         }
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.transform.tag == "platform")
@@ -122,8 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.Play("Death",0,1.5f);
         }
-        
-        //anim = gameObject.GetComponent<Animation>();
+
         Die();
     }
 }

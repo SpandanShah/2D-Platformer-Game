@@ -5,32 +5,51 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] public int TouchCount = 0;
-    public GameObject life1;
-    public GameObject life2;
-    public GameObject life3;
+    [SerializeField] public PlayerController playerController;
+    [SerializeField] public LifeConroller lifeController;
+
+    [SerializeField] private Animator enemyAnimator;
+
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject groundDetector;
+    [SerializeField] private float rayDistance;
+    private int directionChanger = 1;
+
+    void Update()
+    {
+        patrolEnemy();
+    }
+
+    private void patrolEnemy()
+    {
+        enemyAnimator.SetBool("Grounded", true);
+
+        transform.Translate(directionChanger * Vector2.right * moveSpeed * Time.deltaTime);
+
+        RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
+
+        if (!hit)
+        {
+            Vector3 scaleVector = transform.localScale;
+            scaleVector.x *= -1;
+            transform.localScale = scaleVector;
+            directionChanger *= -1;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        TouchCount++;
-        Debug.Log("Touch count: " + TouchCount);
-        if (TouchCount == 1)
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            Debug.Log("Destroy Life 3");
-            Destroy(life3);
+            playerController = collision.gameObject.GetComponent<PlayerController>();
+            lifeController.TakeDamage();
         }
-        else if (TouchCount == 2)
-        {
-            Destroy(life2);
-        }
-        else if (TouchCount == 3)
-        {
-            Destroy(life1);
-        }
-        if (collision.gameObject.GetComponent<PlayerController>() != null && TouchCount == 3)
-        {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-            playerController.KillPlayer();
-            TouchCount = 0;
-        }
+    }
+
+    public void PlayFootStep()
+    {
+        // Play the footstep sound or trigger any effect you want here
+        Debug.Log("Footstep sound played!");
+        // Example: SoundManager.Instance.Play(Sounds.Footstep); // if you have a sound manager
     }
 }
